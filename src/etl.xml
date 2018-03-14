@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<etl>
+
+<datasource>
+	
+	<database>																																
+	            <jndi-name>runtocrm</jndi-name>                                                 
+	            <driver type="oracle.jdbc.driver.OracleDriver">                                
+		            <url>jdbc:Oracle:thin:@192.168.201.102:1521:ora</url>                  
+		            <user>gscx</user>       
+		            <password>gscx</password>                                                    
+	            </driver>
+	            <prepared-statement-cache-size>8</prepared-statement-cache-size>       
+	            <max-connections>20</max-connections>                                  
+	            <max-idle-time>30s</max-idle-time>                                         
+	</database>
+	
+    <database>																																
+            <jndi-name>zx_old</jndi-name>                                                 
+            <driver type="com.microsoft.sqlserver.jdbc.SQLServerDriver">                                
+             <url>jdbc:sqlserver://133.37.77.83:1433</url>                  
+             <user>zxdb_zxtj</user>                               
+             <password>zxdb_zxtj</password>                                                    
+            </driver>                                                 
+            <prepared-statement-cache-size>8</prepared-statement-cache-size>              
+            <max-connections>20</max-connections>                                         
+            <max-idle-time>30s</max-idle-time>                                            
+    </database>
+    
+    <database>																																
+            <jndi-name>zx_new</jndi-name>                                                 
+            <driver type="com.microsoft.sqlserver.jdbc.SQLServerDriver">                                
+             <url>jdbc:sqlserver://133.37.79.83:1433</url>                  
+             <user>zxdb_zxtj</user>                               
+             <password>zxdb_zxtj</password>                                                    
+            </driver>                                                 
+            <prepared-statement-cache-size>8</prepared-statement-cache-size>              
+            <max-connections>20</max-connections>                                         
+            <max-idle-time>30s</max-idle-time>                                            
+    </database>
+    <database>																																
+            <jndi-name>intf_rmf</jndi-name>                                                 
+            <driver type="oracle.jdbc.driver.OracleDriver">                                
+             <url>jdbc:Oracle:thin:@133.37.77.177:1521:zxin</url>                  
+             <user>intf_rmf</user>                               
+             <password>intf_rmf</password>                                                    
+            </driver>                                                 
+            <prepared-statement-cache-size>8</prepared-statement-cache-size>              
+            <max-connections>20</max-connections>                                         
+            <max-idle-time>30s</max-idle-time>                                            
+    </database>
+    
+   	<database>																																
+            <jndi-name>wfm</jndi-name>                                                 
+            <driver type="oracle.jdbc.driver.OracleDriver">                                
+             <url>jdbc:Oracle:thin:@133.37.79.41:1521:ora</url>                  
+             <user>wfm</user>                               
+             <password>wfm</password>                                                    
+            </driver>                                                 
+            <prepared-statement-cache-size>8</prepared-statement-cache-size>              
+            <max-connections>20</max-connections>                                         
+            <max-idle-time>30s</max-idle-time>                                            
+    </database>
+    
+   	<database>																																
+            <jndi-name>mywfm</jndi-name>                                                 
+            <driver type="oracle.jdbc.driver.OracleDriver">                                
+             <url>jdbc:Oracle:thin:@127.0.0.1:1521:flex</url>                  
+             <user>wfm</user>                               
+             <password>wfm</password>                                                    
+            </driver>                                                 
+            <prepared-statement-cache-size>8</prepared-statement-cache-size>              
+            <max-connections>20</max-connections>                                         
+            <max-idle-time>30s</max-idle-time>                                            
+    </database>
+    
+    
+</datasource>
+
+<jobs>
+
+	<job id="one"><!-- work_eff数据 -->
+		<execsql jndiname="mywfm" sql="src/any_sql/query_time_range.sql">
+			<execsql jndiname="zx_new" sql="src/any_sql/query_work_eff.sql">
+			    <execsql jndiname="mywfm" sql="src/any_sql/insert_work_eff.sql"></execsql>
+			</execsql>
+		</execsql>
+	</job>
+
+</jobs>
+
+</etl>

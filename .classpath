@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry path="src" kind="src"/>
+	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
+	<classpathentry path="myjar/commons-logging-1.0.4.jar" kind="lib"/>
+	<classpathentry path="myjar/dom4j-1.6.1.jar" kind="lib"/>
+	<classpathentry path="myjar/jaxen-1.1-beta-6.jar" kind="lib"/>
+	<classpathentry path="myjar/log4j-1.2.8.jar" kind="lib"/>
+	<classpathentry path="myjar/ojdbc14.jar" kind="lib"/>
+	<classpathentry path="myjar/quartz-all-1.7.3.jar" kind="lib"/>
+	<classpathentry path="myjar/sqljdbc.jar" kind="lib"/>
+	<classpathentry path="bin" kind="output"/>
+</classpath>
